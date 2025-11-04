@@ -1,0 +1,21 @@
+.skeleton-container {
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  left: 0;
+  right: 0;
+}
+
+.navbar-container {
+  display: flex;
+  height: 100%;
+  background: rgba(207, 202, 202, 0.846);
+}
+
+mat-sidenav {
+  min-width: 240px !important;
+  border-right: 1px solid #eee;
+  box-shadow: 6px 0 6px rgba(0, 0, 0, .1);
+  /* background-color:rgb(63, 81, 181); */
+}
+

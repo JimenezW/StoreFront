@@ -1,0 +1,19 @@
+
+<div class="skeleton-container">
+  <app-header [mobile]="mode == 'over'" (toggleSidenav)="toggle()" ></app-header>
+  <mat-sidenav-container class="navbar-container">
+    <mat-sidenav #sidenav [mode]="mode" [opened]="opened()" >
+      <app-navigation></app-navigation>
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <!-- Add page content here -->
+      <router-outlet></router-outlet>
+      <p>Current Screen Size: {{currentScreenSize}}</p>
+      <p><button matButton (click)="sidenav.toggle()">Toggle</button></p>
+    </mat-sidenav-content>
+
+  </mat-sidenav-container>
+</div>
+
+
+

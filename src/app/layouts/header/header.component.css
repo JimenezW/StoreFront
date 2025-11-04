@@ -1,0 +1,19 @@
+.navbar-spacer {
+  flex: 1 1 auto;
+}
+
+.navbar {
+  z-index: 2;
+}
+
+.navbar-brand {
+  text-decoration: none;
+  color: white;
+}
+
+.navbar-is-mobile .navbar {
+  position: fixed;
+  z-index: 2;
+}
+
+

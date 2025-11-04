@@ -1,0 +1,19 @@
+<mat-toolbar class="navbar" color="primary">
+  @if (mobile) {
+    <button matIconButton aria-label="Menu"
+      (click)="toggleSidenav.emit()"
+      matTooltip="Menu">
+      <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="home"></mat-icon>
+    </button>
+
+  }
+
+  <a class="navbar-brand"  matTooltip="Home">
+        <h1>
+          Tienda Angular
+        </h1>
+      </a>
+
+      <span class="navbar-spacer"></span>
+
+</mat-toolbar>
