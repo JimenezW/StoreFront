@@ -7,7 +7,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
 import { UserService } from '../../../core/services/user.service';
-import { SpinnerBackGroundService } from '../../../shared/service/spinner.service';
+import { Router } from '@angular/router';
+import urlConstRouting from '../../../shared/constants/url-const.routing';
 
 @Component({
   selector: 'app-login',
@@ -30,7 +31,8 @@ export class LoginComponent implements OnInit {
   hidePassword = true;
 
   constructor(private fb: FormBuilder,
-    private userService: UserService
+    private userService: UserService,
+    private _router : Router
   ) {
     this.loginForm = this.fb.group({
       username: ['', Validators.required],
@@ -54,8 +56,11 @@ export class LoginComponent implements OnInit {
 
       this.userService.login(user).subscribe({
         next: (response) => {
-          console.log('Login successful:', response);
-          // Aquí puedes redirigir al usuario o realizar otras acciones después del login exitoso
+          let res = response;
+          if (res != undefined && res?.ok) {
+            const url =urlConstRouting.dashboard.base;
+            this._router.navigateByUrl('/' + url);
+          }
         },
         error: (error) => {
           console.error('Login failed:', error);

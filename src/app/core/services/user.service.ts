@@ -63,10 +63,13 @@ export class UserService {
           const body = res.body;
 
           const userInfo = {
-            id: body.id ?? 'N/A',
-            fullName: body.username,
-            expireAt: body.expireAt,
+            id: body.content.id ?? 'N/A',
+            fullName: body.content.username,
+            expireAt: body.content.expireAt,
           };
+
+          localStorage.setItem('accessToken', body.content.accessToken);
+          localStorage.setItem('refreshToken', body.content.refreshToken);
 
           this.saveUser(userInfo);
           return res.body; // ✅ esto ahora se propaga correctamente

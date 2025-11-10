@@ -1,9 +1,12 @@
-import { ErrorResponseI } from "./errorResponse.interface"
-
+import { ErrorResponseI } from './errorResponse.interface';
 
 export interface JwtResponseI extends ErrorResponseI {
-        jwtToken:string,
-        expireAt:string
-        id:number,
-        username:string
+
+  content: {
+    refreshToken: string;
+    accessToken: string;
+    expireAt: string;
+    id: number;
+    username: string;
+  }
 }

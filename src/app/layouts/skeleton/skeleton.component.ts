@@ -8,6 +8,7 @@ import { Subject, takeUntil } from 'rxjs';
 
 import { NavigationComponent } from '../navigation/navigation.component';
 import { HeaderComponent } from '../header/header.component';
+import { NotFoundComponent } from '../../shared/components/not-found/not-found.component';
 
 @Component({
   selector: 'app-skeleton',
@@ -21,6 +22,7 @@ import { HeaderComponent } from '../header/header.component';
     LayoutModule,
     NavigationComponent,
     HeaderComponent
+
   ]
 })
 export class SkeletonComponent implements OnInit, OnDestroy, AfterViewInit {
