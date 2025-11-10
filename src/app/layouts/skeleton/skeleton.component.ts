@@ -3,11 +3,10 @@ import { AfterViewInit, ChangeDetectorRef, Component, effect, inject,
   OnDestroy, OnInit, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import {MatSidenavModule} from '@angular/material/sidenav';
-import {BreakpointObserver, Breakpoints, LayoutModule, MediaMatcher} from '@angular/cdk/layout';
+import {BreakpointObserver, Breakpoints, LayoutModule} from '@angular/cdk/layout';
 import { Subject, takeUntil } from 'rxjs';
 
 import { NavigationComponent } from '../navigation/navigation.component';
-import { FooterComponent } from '../footer/footer.component';
 import { HeaderComponent } from '../header/header.component';
 
 @Component({
@@ -21,7 +20,6 @@ import { HeaderComponent } from '../header/header.component';
     MatSidenavModule,
     LayoutModule,
     NavigationComponent,
-    FooterComponent,
     HeaderComponent
   ]
 })
