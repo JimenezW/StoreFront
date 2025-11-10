@@ -1,0 +1,35 @@
+
+<div class="overlay" *ngIf="isLoading$ | async">
+  <ng-container *ngTemplateOutlet="activeTemplate"></ng-container>
+</div>
+
+
+<!-- Spinner templates -->
+<ng-template #blobTpl>
+  <div class="blob"></div>
+</ng-template>
+
+<ng-template #flippingTpl>
+  <div class="flipping">
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  </div>
+</ng-template>
+
+<ng-template #pulseTpl>
+  <div class="pulse"></div>
+</ng-template>
+
+<ng-template #spinnerTpl>
+  <div class="spinner">
+  <div></div>
+  <div></div>
+  </div>
+</ng-template>

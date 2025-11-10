@@ -4,9 +4,10 @@ import {
   provideZonelessChangeDetection } from '@angular/core';
 import { provideRouter } from '@angular/router';
 import { routes } from './app.routes';
-import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
 import { JWT_OPTIONS, JwtHelperService } from '@auth0/angular-jwt';
+import { spinnerInterceptorFn } from './core/interceptors/spinner.interceptor';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -16,7 +17,7 @@ export const appConfig: ApplicationConfig = {
     { provide: JWT_OPTIONS, useValue: JWT_OPTIONS },
     JwtHelperService,
     provideRouter(routes),
-    provideHttpClient(),
+    provideHttpClient(withInterceptors([spinnerInterceptorFn])),
     { provide: 'animations', useValue: true },
   ]
 };
