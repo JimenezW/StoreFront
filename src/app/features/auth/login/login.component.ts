@@ -6,6 +6,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
+import { UserService } from '../../../core/services/user.service';
 
 @Component({
   selector: 'app-login',
@@ -27,7 +28,9 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   hidePassword = true;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder,
+    private userService: UserService
+  ) {
     this.loginForm = this.fb.group({
       username: ['', Validators.required],
       password: ['', Validators.required]
@@ -43,8 +46,21 @@ export class LoginComponent implements OnInit {
 
   onSubmit(): void {
     if (this.loginForm.valid) {
-      console.log('Datos enviados:', this.loginForm.value);
-      // TODO: conectar con tu servicio de autenticación
+      const user = {
+        email: this.loginForm.value.username,
+        password: this.loginForm.value.password
+      };
+
+      this.userService.login(user).subscribe({
+        next: (response) => {
+          console.log('Login successful:', response);
+          // Aquí puedes redirigir al usuario o realizar otras acciones después del login exitoso
+        },
+        error: (error) => {
+          console.error('Login failed:', error);
+          // Manejo de errores, mostrar mensajes al usuario, etc.
+        }
+      });
     }
   }
 
