@@ -1,0 +1,77 @@
+<div [ngSwitch]="data.type">
+  <div *ngSwitchDefault>
+    <h1 mat-dialog-title>{{ data.title }}</h1>
+    <div mat-dialog-content>
+      <p>{{ data.message }}</p>
+    </div>
+    <div mat-dialog-actions align="end">
+      <button mat-button (click)="onDismiss()">Cerrar</button>
+    </div>
+  </div>
+
+  <div *ngSwitchCase="'success'">
+    <h1 mat-dialog-title class="d-flex align-items-center">
+      <mat-icon color="primary">check_circle</mat-icon>
+      <span class="ms-2">{{ data.title || 'Éxito' }}</span>
+    </h1>
+    <div mat-dialog-content>
+      <p>{{ data.message }}</p>
+    </div>
+    <div mat-dialog-actions align="end">
+      <button mat-button color="primary" (click)="onConfirm()">Aceptar</button>
+    </div>
+  </div>
+
+  <div *ngSwitchCase="'error'">
+    <h1 mat-dialog-title class="d-flex align-items-center">
+      <mat-icon color="warn">error</mat-icon>
+      <span class="ms-2">{{ data.title || 'Error' }}</span>
+    </h1>
+    <div mat-dialog-content>
+      <p>{{ data.message }}</p>
+    </div>
+    <div mat-dialog-actions align="end">
+      <button mat-button color="warn" (click)="onDismiss()">Cerrar</button>
+    </div>
+  </div>
+
+  <div *ngSwitchCase="'warn'">
+    <h1 mat-dialog-title class="d-flex align-items-center">
+      <mat-icon color="accent">warning</mat-icon>
+      <span class="ms-2">{{ data.title || 'Advertencia' }}</span>
+    </h1>
+    <div mat-dialog-content>
+      <p>{{ data.message }}</p>
+    </div>
+    <div mat-dialog-actions align="end">
+      <button mat-button color="accent" (click)="onDismiss()">Entendido</button>
+    </div>
+  </div>
+
+  <div *ngSwitchCase="'info'">
+    <h1 mat-dialog-title class="d-flex align-items-center">
+      <mat-icon color="primary">info</mat-icon>
+      <span class="ms-2">{{ data.title || 'Información' }}</span>
+    </h1>
+    <div mat-dialog-content>
+      <p>{{ data.message }}</p>
+    </div>
+    <div mat-dialog-actions align="end">
+      <button mat-button (click)="onDismiss()">Aceptar</button>
+    </div>
+  </div>
+
+  <div *ngSwitchCase="'confirm'">
+    <h1 mat-dialog-title class="d-flex align-items-center">
+      <mat-icon>help_outline</mat-icon>
+      <span class="ms-2">{{ data.title }}</span>
+    </h1>
+    <div mat-dialog-content>
+      <p>{{ data.message }}</p>
+    </div>
+    <div mat-dialog-actions align="end">
+      <button mat-button (click)="onDismiss()">Cancelar</button>
+      <button mat-button color="primary" (click)="onConfirm()">Confirmar</button>
+    </div>
+  </div>
+</div>
