@@ -1,0 +1,74 @@
+.menu-item {
+  cursor: pointer;
+  padding: 8px 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.menu-item:hover {
+  background-color: rgba(83, 40, 204, 0.1);
+}
+
+.active-link {
+  background-color: rgba(83, 40, 204, 0.2);
+  font-weight: 600;
+}
+
+.d-inline-flex{
+  display:inline-flex;
+
+  span {
+    margin-left: 8px !important;
+  }
+}
+
+.mat-accordion .mat-expansion-panel:last-of-type {
+  border-bottom-right-radius: 0px;
+  border-bottom-left-radius: 0px;
+}
+
+::ng-deep mat-expansion-panel {
+  width: 100%;
+}
+
+::ng-deep mat-expansion-panel-header {
+  width: 100%;
+}
+
+::ng-deep mat-nav-list {
+  width: 100%;
+  padding: 0; /* elimina el padding lateral por defecto */
+}
+
+::ng-deep a[mat-list-item] {
+  width: 100%;
+  box-sizing: border-box; /* asegura que los bordes y padding cuenten en el ancho */
+  padding-left: 16px; /* ajusta el espaciado manualmente */
+}
+
+::ng-deep a[mat-list-item]:hover {
+  background-color: rgba(83, 40, 204, 0.1);
+}
+
+.mat-expansion-panel-spacing {
+  margin: 0px 0;
+}
+
+.mat-accordion .mat-expansion-panel .mat-expansion-panel-header {
+  padding: 0 20px !important;
+}
+
+.mat-accordion .mat-expansion-panel .mat-expansion-panel-body {
+  padding: 0 2px 2px !important;
+}
+
+.full-width-list {
+  width: 100%;
+  padding: 0;
+}
+
+.full-width-item {
+  width: 100%;
+  box-sizing: border-box;
+}

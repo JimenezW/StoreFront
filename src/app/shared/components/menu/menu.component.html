@@ -1,0 +1,43 @@
+<mat-accordion multi>
+
+  @for (item of menuOptions; track item) {
+    <!-- 🟢 Caso 1: sin hijos -->
+    @if (!item.children) {
+      <mat-list-item (click)="navigate(item.route)" class="menu-item">
+        <div class="menu-entry">
+          <mat-icon>{{ item.icon }}</mat-icon>
+          <span>{{ item.title }}</span>
+        </div>
+      </mat-list-item>
+    }
+
+    <!-- 🟡 Caso 2: con hijos -->
+    @else {
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <div class="menu-entry">
+              <mat-icon>{{ item.icon }}</mat-icon>
+              <span>{{ item.title }}</span>
+            </div>
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+
+        <mat-nav-list class="submenu">
+          @for (child of item.children; track child) {
+            <a
+              mat-list-item
+              [routerLink]="child.route"
+              routerLinkActive="active-link"
+              class="submenu-item"
+            >
+              <mat-icon>{{ child.icon }}</mat-icon>
+              <span>{{ child.title }}</span>
+            </a>
+          }
+        </mat-nav-list>
+      </mat-expansion-panel>
+    }
+  }
+
+</mat-accordion>
