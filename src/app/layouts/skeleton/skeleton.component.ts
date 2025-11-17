@@ -8,6 +8,7 @@ import { Subject, takeUntil } from 'rxjs';
 
 import { NavigationComponent } from '../navigation/navigation.component';
 import { HeaderComponent } from '../header/header.component';
+import { InactivityService } from '../../shared/service/inactive.service';
 
 @Component({
   selector: 'app-skeleton',
@@ -37,7 +38,9 @@ export class SkeletonComponent implements OnInit, OnDestroy, AfterViewInit {
   mode: 'over' | 'side' = 'side';
   opened = signal(true);
 
-  constructor(private changeDetectorRef: ChangeDetectorRef)
+  constructor(private changeDetectorRef: ChangeDetectorRef,
+    private inactiveService : InactivityService
+  )
   {
 
     inject(BreakpointObserver)
@@ -88,6 +91,7 @@ export class SkeletonComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   ngOnInit() {
+    this.inactiveService.startMonitoring();
   }
 
   toggle() {
