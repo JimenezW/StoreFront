@@ -3,10 +3,10 @@ const urlConstRouting = {
     login: ''
   },
   dashboard:{
-    base:'dashboard'
+    base:'store'
   },
-  usuarios : {
-    base:'usuarios',
+  productos : {
+    base:'productos',
     crear :'crear',
     asig_permiso : 'asig-permiso',
     asig_rol : 'asig-rol',

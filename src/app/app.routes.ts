@@ -4,6 +4,9 @@ import { AccessGuard } from './core/guards/acces.guards';
 import { AuthRoutes } from './features/auth/auth.routes';
 import { AuthGuard } from './core/guards/aut.guards';
 import { NotFoundComponent } from './shared/components/not-found/not-found.component';
+import urlConstRouting from './shared/constants/url-const.routing';
+
+const home = urlConstRouting.dashboard.base;
 
 export const routes: Routes = [
   {
@@ -17,7 +20,7 @@ export const routes: Routes = [
     //canActivate: [AuthGuard]
   },
   {
-    path: 'dashboard',
+    path: home,
     children: LayoutRoutes,
     canActivate: [AccessGuard]
   },

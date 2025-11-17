@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuComponent } from '../../shared/components/menu/menu.component';
 import { MenuItem } from '../../shared/components/menu/menu.model';
+import urlConstRouting from '../../shared/constants/url-const.routing';
 
 @Component({
   selector: 'app-navigation',
@@ -12,17 +13,13 @@ import { MenuItem } from '../../shared/components/menu/menu.model';
 })
 export class NavigationComponent implements OnInit {
 
+  base = urlConstRouting.dashboard.base;
+
   menuOptions: MenuItem[] = [
     {
-    title: 'Home',
-    icon: 'home',
-    route: '',
-    typeAccion: 'NA'
-    },
-    {
-      title: 'Dashboard',
-      icon: 'dashboard',
-      route: '/dashboard',
+      title: 'Home',
+      icon: 'home',
+      route: '/'+ this.base,
       typeAccion : 'link'
     },
     {
@@ -30,6 +27,11 @@ export class NavigationComponent implements OnInit {
       icon: 'local_mall',
       typeAccion: 'NA',
       children: [
+        {
+          title: 'Productos',
+          icon: 'ballot',
+          route: `/${this.base}/${urlConstRouting.productos.base}`,
+          typeAccion: 'link' },
         {
           title: 'Comprar',
           icon: 'shopping_cart',
