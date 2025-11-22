@@ -1,7 +1,8 @@
 const urlPublicApiAuth = 'https://autapi.onrender.com';
-const urlPublicApi = 'https://autapi.onrender.com';
+const urlPublicApiStore = 'https://storeback-sg97.onrender.com';
 
 export const environment = {
   production: false,
-  apiUrl: urlPublicApiAuth
+  apiAuth: urlPublicApiAuth,
+  apiStore: urlPublicApiStore
 };

@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { COMMON_IMPORTS } from '../../shared/constants/import-modules';
 import { TablaDinamicaComponent } from '../../shared/components/tabla-dinamica/tabla-dinamica.component';
 import { ConfigTablaProductos } from './config-tabla-productos';
+import { ProductosService } from '../../core/services/productos.service';
+import { ActionEvent } from '../../shared/components/tabla-dinamica/dynamic-table.models';
+import { PageEvent } from '@angular/material/paginator';
+import { Sort } from '@angular/material/sort';
 
 @Component({
   selector: 'app-productos',
@@ -15,13 +19,42 @@ import { ConfigTablaProductos } from './config-tabla-productos';
 export class ProductosComponent implements OnInit {
 
   gridProductos = new ConfigTablaProductos();
-  constructor() { }
+
+  constructor(private readonly productoService: ProductosService) { }
 
   ngOnInit() {
+    this.cargarDatos();
   }
 
   onAgregar(){}
 
   onFiltrar(){}
+
+  cargarDatos(page = 0, size = 5, sort = 'fechaRegistro,desc'){
+    const parms = { esPaginado: true, pagina: page, items: size, estado: true, sort };
+
+    this.productoService.getPagination(parms).subscribe(response => {
+      if(response){
+        this.gridProductos.cargarDatos(response.data);
+        this.gridProductos.setPagination(response.pagina, response.items, response.total);
+        this.gridProductos.recargar();
+      }
+    });
+  }
+
+  handleActionEvent(event: ActionEvent): void {
+    alert(`Acción: ${event.action}\nFila: ${JSON.stringify(event.rowData)}`);
+  }
+
+  handlePageEvent(event: PageEvent): void {
+    this.cargarDatos(event.pageIndex, event.pageSize);
+  }
+
+  handleSortEvent(event: Sort): void {
+    const sort = `${event.active},${event.direction}`;
+    const size = this.gridProductos.options.pagination.pageSize;
+    const page = this.gridProductos.options.pagination.page;
+    this.cargarDatos(page, size, sort);
+  }
 
 }

@@ -17,7 +17,12 @@
 
   <!-- TABLA -->
   <div class="table-container">
-    <app-tabla-dinamica [gridConfig]="gridProductos"></app-tabla-dinamica>
+    <app-tabla-dinamica
+      [gridConfig]="gridProductos"
+      (action)="handleActionEvent($event)"
+      (pageChange)="handlePageEvent($event)"
+      (sortChange)="handleSortEvent($event)"
+    ></app-tabla-dinamica>
   </div>
 
 </mat-card>

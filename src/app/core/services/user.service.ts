@@ -11,7 +11,7 @@ import { JwtResponseI } from '../model/JwtResponse.interface';
   providedIn: 'root',
 })
 export class UserService {
-  private baseUrl = environment.apiUrl;
+  private baseUrl = environment.apiAuth;
   private token: string = '';
 
   constructor(
