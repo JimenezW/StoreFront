@@ -1,3 +1,23 @@
-<p>
-  productos works!
-</p>
+<h1 class="page-title">Administración productos</h1>
+
+<mat-card class="list-card">
+
+  <!-- ACCIONES -->
+  <div class="actions-container">
+    <button mat-flat-button color="primary" (click)="onAgregar()">
+      <mat-icon>add</mat-icon>
+      Agregar
+    </button>
+
+    <button mat-stroked-button color="accent" (click)="onFiltrar()">
+      <mat-icon>filter_list</mat-icon>
+      Filtros
+    </button>
+  </div>
+
+  <!-- TABLA -->
+  <div class="table-container">
+    <app-tabla-dinamica [gridConfig]="gridProductos"></app-tabla-dinamica>
+  </div>
+
+</mat-card>
