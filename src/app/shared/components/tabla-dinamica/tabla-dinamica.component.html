@@ -1,0 +1,51 @@
+<div class="dynamic-table-container mat-elevation-z8">
+
+  <table mat-table [dataSource]="dataSource" matSort (matSortChange)="sortChange.emit($event)">
+
+    <!-- Columnas generadas dinámicamente -->
+    <ng-container *ngFor="let col of gridConfig.columns" [matColumnDef]="col.id">
+      <th
+        mat-header-cell
+        *matHeaderCellDef
+        mat-sort-header
+        [disabled]="!col.sortable">
+          {{col.title}}
+      </th>
+
+
+      <td mat-cell *matCellDef="let row">
+        <div *ngIf="col.format != 'accion'" [ngSwitch]="col.format">
+          <span *ngSwitchCase="'date'">{{ row[col.id] | date: 'mediumDate' }}</span>
+          <span *ngSwitchCase="'currency'">{{ row[col.id] | currency: 'USD' }}</span>
+          <span *ngSwitchDefault>{{ row[col.id] }}</span>
+        </div>
+        <div *ngIf="col.format === 'accion'">
+          <ng-container *ngFor="let accion of gridConfig.rowconfig">
+            <button mat-icon-button color="{{accion.color}}" (click)="onActionClick(accion.esAccion, row)" [matTooltip]="accion.totooltip ?? '-'">
+              <mat-icon>{{ accion.icon }}</mat-icon>
+            </button>
+          </ng-container>
+        </div>
+
+      </td>
+    </ng-container>
+
+    <!-- Columna de Acciones -->
+
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+    <!-- PAGINADOR [pageSizeOptions]="gridConfig.options.paginationVirtual"-->
+  <mat-paginator
+    *ngIf="gridConfig.options.pagination"
+    [length]="gridConfig.options.pagination.totalItems"
+    [pageSize]="gridConfig.options.pagination.pageSize"
+    [pageSizeOptions]="gridConfig.options.pagination.pageSizeOptions"
+    (page)="gridConfig.options.paginationVirtual ? onVirtualPage($event) : pageChange.emit($event)"
+    showFirstLastButtons>
+  </mat-paginator>
+
+
+</div>
