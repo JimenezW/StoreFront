@@ -6,6 +6,8 @@ import { ProductosService } from '../../core/services/productos.service';
 import { ActionEvent } from '../../shared/components/tabla-dinamica/dynamic-table.models';
 import { PageEvent } from '@angular/material/paginator';
 import { Sort } from '@angular/material/sort';
+import { ModalFormService } from '../../shared/service/modal-form.service';
+import { ConfigFormProductos } from './config-form-productos';
 
 @Component({
   selector: 'app-productos',
@@ -19,14 +21,23 @@ import { Sort } from '@angular/material/sort';
 export class ProductosComponent implements OnInit {
 
   gridProductos = new ConfigTablaProductos();
+  formProductos = new ConfigFormProductos();
 
-  constructor(private readonly productoService: ProductosService) { }
+  constructor(private readonly productoService: ProductosService,
+    private readonly modalFormService: ModalFormService
+  ) { }
 
   ngOnInit() {
     this.cargarDatos();
   }
 
-  onAgregar(){}
+  onAgregar(){
+    this.modalFormService.openFormModal(this.formProductos).subscribe(result => {
+      if(result && result.action === 'save'){
+
+      }
+    });
+  }
 
   onFiltrar(){}
 

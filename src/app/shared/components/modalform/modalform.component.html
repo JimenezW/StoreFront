@@ -1,0 +1,43 @@
+<h2 mat-dialog-title>{{ gridConfig.title }}</h2>
+
+<div mat-dialog-content>
+  <form [formGroup]="form" class="form-grid">
+
+    <!-- Campos dinámicos -->
+    <ng-container *ngFor="let field of gridConfig.fields">
+
+      <mat-form-field class="full-width" appearance="outline">
+        <mat-label>{{ field.label }}</mat-label>
+
+        <input *ngIf="field.type === 'text' || field.type === 'number' || field.type === 'date'"
+               matInput
+               [type]="field.type"
+               [formControlName]="field.id">
+
+        <textarea *ngIf="field.type === 'textarea'"
+                  matInput
+                  rows="3"
+                  [formControlName]="field.id">
+        </textarea>
+
+        <mat-select *ngIf="field.type === 'select'" [formControlName]="field.id">
+          <mat-option *ngFor="let opt of field.options" [value]="opt.value">
+            {{ opt.label }}
+          </mat-option>
+      </mat-select>
+      </mat-form-field>
+
+    </ng-container>
+
+  </form>
+</div>
+
+<div mat-dialog-actions align="end">
+  <button
+    *ngFor="let btn of gridConfig.buttons"
+    mat-raised-button
+    [color]="btn.color"
+    (click)="onActionClick(btn.id)">
+    {{ btn.label }}
+  </button>
+</div>
