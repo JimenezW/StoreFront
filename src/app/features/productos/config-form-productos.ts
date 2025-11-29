@@ -5,8 +5,17 @@ export class ConfigFormProductos implements ConfigFormModal {
   title = 'Formulario de Productos';
   width = '500px';
   fields: FormFieldConfig[] =[
-    { id: 'nombre', label: 'Nombre', type: 'text' },
-    { id: 'precio', label: 'Precio', type: 'number' }
+    { id: 'nombre',
+      label: 'Nombre',
+      type: 'text'
+    },
+    { id: 'descricion',
+      label: 'Descripción',
+      type: 'text'
+    },
+    { id: 'sku',
+      label: 'Cod. Barra',
+      type: 'number' }
     ];
   buttons: ModalButtonConfig[] = [
     {

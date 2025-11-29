@@ -8,6 +8,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { ConfigFormModal } from './config-form-modal.model';
 import { ActionModalEvent } from './dynamic-modalform';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { NumberFormatDirective } from '../../directives/number-format.directive';
 
 
 @Component({
@@ -22,7 +23,8 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
-    MatSelectModule
+    MatSelectModule,
+    NumberFormatDirective
   ]
 })
 export class ModalformComponent implements OnInit {

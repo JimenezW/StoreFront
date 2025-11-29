@@ -33,9 +33,8 @@ export class ProductosComponent implements OnInit {
 
   onAgregar(){
     this.modalFormService.openFormModal(this.formProductos).subscribe(result => {
-      if(result && result.action === 'save'){
-
-      }
+      console.log('Datos a guardar:', result.data);
+      console.log('Acción realizada:', result.action);
     });
   }
 

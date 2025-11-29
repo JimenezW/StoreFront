@@ -8,11 +8,26 @@
 
       <mat-form-field class="full-width" appearance="outline">
         <mat-label>{{ field.label }}</mat-label>
-
-        <input *ngIf="field.type === 'text' || field.type === 'number' || field.type === 'date'"
+        @if (field.type === 'text') {
+          <input
                matInput
                [type]="field.type"
                [formControlName]="field.id">
+        }
+
+        @if (field.type === 'number') {
+          <input
+               matInput
+               appNumberFormat
+               [formControlName]="field.id">
+        }
+
+        @if (field.type === 'date') {
+          <input
+               matInput
+               [type]="field.type"
+               [formControlName]="field.id">
+        }
 
         <textarea *ngIf="field.type === 'textarea'"
                   matInput
