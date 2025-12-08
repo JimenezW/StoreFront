@@ -6,9 +6,10 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { ConfigFormModal } from './config-form-modal.model';
-import { ActionModalEvent } from './dynamic-modalform';
+import { ActionModalEvent, FormFieldConfig } from './dynamic-modalform';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { NumberFormatDirective } from '../../directives/number-format.directive';
+import { ContainerDirective } from '../../directives/app-continer.directive';
 
 
 @Component({
@@ -30,6 +31,7 @@ import { NumberFormatDirective } from '../../directives/number-format.directive'
 export class ModalformComponent implements OnInit {
 
   form!: FormGroup;
+  rows: FormFieldConfig[][] = [];
 
   constructor(
     private dialogRef: MatDialogRef<ModalformComponent>,
@@ -48,6 +50,25 @@ export class ModalformComponent implements OnInit {
     });
 
     this.form = this.fb.group(group);
+    // Agrupar campos por fila
+    this.buildRows();
+
+  }
+
+  private buildRows(): void {
+    const fields = [...this.gridConfig.fields];
+
+    // Asignar fila 1 por defecto si no está definida
+    fields.forEach(f => f.row = f.row ?? 1);
+
+    // Obtener todas las filas distintas ordenadas
+    const distinctRows = Array.from(new Set(fields.map(f => f.row as number))).sort((a, b) => a - b);
+
+    this.rows = distinctRows.map(rowNumber => {
+      return fields
+        .filter(f => f.row === rowNumber)
+        .sort((a, b) => (a.order ?? 1) - (b.order ?? 1));
+    });
   }
 
   onActionClick(action: string): void {

@@ -3,19 +3,27 @@ import { FormFieldConfig, ModalButtonConfig } from '../../shared/components/moda
 
 export class ConfigFormProductos implements ConfigFormModal {
   title = 'Formulario de Productos';
-  width = '500px';
+  width = '600px';
+  height= '300px';
   fields: FormFieldConfig[] =[
     { id: 'nombre',
       label: 'Nombre',
-      type: 'text'
+      type: 'text',
+      row: 1,
+      order: 1
     },
     { id: 'descricion',
       label: 'Descripción',
-      type: 'text'
+      type: 'text',
+      row: 1,
+      order: 2
     },
     { id: 'sku',
       label: 'Cod. Barra',
-      type: 'number' }
+      type: 'number',
+      row: 2,
+      order: 1
+    }
     ];
   buttons: ModalButtonConfig[] = [
     {

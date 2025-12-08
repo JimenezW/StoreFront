@@ -16,6 +16,9 @@ export class ModalFormService {
 
     const dialogRef = this.dialog.open(ModalformComponent, {
       width: config.width || '600px',
+      height: config.height || '400px',
+      closeOnNavigation: true,
+      disableClose: true,
       data: config
     });
 

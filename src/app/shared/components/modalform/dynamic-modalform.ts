@@ -5,6 +5,8 @@ export interface FormFieldConfig {
   label: string;
   type: 'text' | 'number' | 'textarea' | 'select' | 'date';
   value?: any;
+  row?: number;
+  order?: number;
   options?: { value: any; label: string }[]; // para select
   validators?: ValidatorFn[];
 }

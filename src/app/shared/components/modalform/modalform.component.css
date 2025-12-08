@@ -1,0 +1,28 @@
+.row {
+  display: flex;
+  gap: 16px;
+  width: 100%;
+}
+
+.col {
+  flex: 1;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.form-container {
+  height: 100%;
+  margin: 1rem;
+}
+
+.actions-container {
+  width: 95%;
+  margin-left: 1rem;
+}
+.actions-container  button {
+  margin-left: 2px;
+}
+
+

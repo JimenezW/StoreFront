@@ -1,58 +1,53 @@
-<h2 mat-dialog-title>{{ gridConfig.title }}</h2>
+<h2 mat-dialog-title class="title-container">{{ gridConfig.title }}</h2>
 
 <div mat-dialog-content>
-  <form [formGroup]="form" class="form-grid">
-
-    <!-- Campos dinámicos -->
-    <ng-container *ngFor="let field of gridConfig.fields">
-
-      <mat-form-field class="full-width" appearance="outline">
-        <mat-label>{{ field.label }}</mat-label>
-        @if (field.type === 'text') {
-          <input
-               matInput
-               [type]="field.type"
-               [formControlName]="field.id">
-        }
-
-        @if (field.type === 'number') {
-          <input
-               matInput
-               appNumberFormat
-               [formControlName]="field.id">
-        }
-
-        @if (field.type === 'date') {
-          <input
-               matInput
-               [type]="field.type"
-               [formControlName]="field.id">
-        }
-
-        <textarea *ngIf="field.type === 'textarea'"
-                  matInput
-                  rows="3"
-                  [formControlName]="field.id">
-        </textarea>
-
-        <mat-select *ngIf="field.type === 'select'" [formControlName]="field.id">
-          <mat-option *ngFor="let opt of field.options" [value]="opt.value">
-            {{ opt.label }}
-          </mat-option>
-      </mat-select>
-      </mat-form-field>
-
-    </ng-container>
-
-  </form>
+ <div class="form-container">
+    <form [formGroup]="form" class="form-grid">
+      @for (row of rows; track row; let idx = $index, e = $even) {
+        <div class="row">
+          @for (field of row; track field; let jdx = $index, ev = $even) {
+            <div class="col">
+              <mat-form-field class="full-width" appearance="outline">
+                <mat-label>{{ field.label }}</mat-label>
+                @switch(field.type) {
+                  @case ('text') {
+                    <input matInput [type]="field.type" [formControlName]="field.id">
+                  }
+                  @case ('number') {
+                    <input matInput appNumberFormat [formControlName]="field.id">
+                  }
+                  @case ('date') {
+                    <input matInput [type]="field.type" [formControlName]="field.id">
+                  }
+                  @case ('textarea') {
+                    <textarea  matInpu rows="3" [formControlName]="field.id"></textarea>
+                  }
+                  @case ('select') {
+                    <mat-select [formControlName]="field.id">
+                    <mat-option *ngFor="let opt of field.options" [value]="opt.value">
+                      {{ opt.label }}
+                    </mat-option>
+                  </mat-select>
+                  }
+                }
+              </mat-form-field>
+            </div>
+          }
+        </div>
+      }
+    </form>
+  </div>
 </div>
 
-<div mat-dialog-actions align="end">
-  <button
-    *ngFor="let btn of gridConfig.buttons"
-    mat-raised-button
-    [color]="btn.color"
-    (click)="onActionClick(btn.id)">
-    {{ btn.label }}
-  </button>
+<div mat-dialog-actions >
+  <div class="actions-container">
+    <button
+      *ngFor="let btn of gridConfig.buttons"
+      mat-raised-button
+      [color]="btn.color"
+      (click)="onActionClick(btn.id)">
+      {{ btn.label }}
+    </button>
+  </div>
+
 </div>
