@@ -38,7 +38,7 @@ export class MensajeAlertService {
     return this.openDialog({ type: 'info', title, message });
   }
 
-  showConfirm(title: string, message: string): Observable<boolean> {
+  showConfirm(message: string, title: string = 'Aviso'): Observable<boolean> {
     return this.openDialog({ type: 'confirm', title, message });
   }
 }

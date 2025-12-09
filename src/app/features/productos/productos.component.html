@@ -4,6 +4,13 @@
 
   <!-- ACCIONES -->
   <div class="actions-container">
+  <div class="left-actions">
+    <mat-slide-toggle [(ngModel)]="estadoGrid" (change)="cargarDatos()">
+      Mostrar activos
+    </mat-slide-toggle>
+  </div>
+
+  <div class="right-actions">
     <button mat-flat-button color="primary" (click)="onAgregar()">
       <mat-icon>add</mat-icon>
       Agregar
@@ -14,6 +21,8 @@
       Filtros
     </button>
   </div>
+</div>
+
 
   <!-- TABLA -->
   <div class="table-container">

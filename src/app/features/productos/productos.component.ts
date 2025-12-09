@@ -3,12 +3,13 @@ import { COMMON_IMPORTS } from '../../shared/constants/import-modules';
 import { TablaDinamicaComponent } from '../../shared/components/tabla-dinamica/tabla-dinamica.component';
 import { ConfigTablaProductos } from './config-tabla-productos';
 import { ProductosService } from '../../core/services/productos.service';
-import { ActionEvent } from '../../shared/components/tabla-dinamica/dynamic-table.models';
+import { AccionFormat, ActionEvent } from '../../shared/components/tabla-dinamica/dynamic-table.models';
 import { PageEvent } from '@angular/material/paginator';
 import { Sort } from '@angular/material/sort';
 import { ModalFormService } from '../../shared/service/modal-form.service';
 import { ConfigFormProductos } from './config-form-productos';
 import { TipoAccion } from '../../shared/components/modalform/dynamic-modalform';
+import { MensajeAlertService } from '../../shared/service/alert.service';
 
 @Component({
   selector: 'app-productos',
@@ -23,9 +24,12 @@ export class ProductosComponent implements OnInit {
 
   gridProductos = new ConfigTablaProductos();
   formProductos = new ConfigFormProductos();
+  estadoGrid = true;
 
-  constructor(private readonly productoService: ProductosService,
-    private readonly modalFormService: ModalFormService
+  constructor(
+    private readonly productoService: ProductosService,
+    private readonly modalFormService: ModalFormService,
+    private readonly mensaje: MensajeAlertService
   ) { }
 
   ngOnInit() {
@@ -43,7 +47,7 @@ export class ProductosComponent implements OnInit {
   onFiltrar(){}
 
   cargarDatos(page = 0, size = 5, sort = 'fechaRegistro,desc'){
-    const parms = { esPaginado: true, pagina: page, items: size, estado: true, sort };
+    const parms = { esPaginado: true, pagina: page, items: size, estado: this.estadoGrid, sort };
 
     this.productoService.getPagination(parms).subscribe(response => {
       if(response){
@@ -55,7 +59,15 @@ export class ProductosComponent implements OnInit {
   }
 
   handleActionEvent(event: ActionEvent): void {
-    alert(`Acción: ${event.action}\nFila: ${JSON.stringify(event.rowData)}`);
+
+    if (event.action === AccionFormat.eliminar) {
+      this.eliminarProducto(event.rowData.id);
+    }
+    if (event.action === AccionFormat.editar) {
+      alert(`Acción: ${event.action}\nFila: ${JSON.stringify(event.rowData)}`);
+
+    }
+
   }
 
   handlePageEvent(event: PageEvent): void {
@@ -72,11 +84,29 @@ export class ProductosComponent implements OnInit {
   private guardarProducto(data: any): void {
     this.productoService.postSave(data).subscribe(response => {
       if(response){
+        this.mensaje.showSuccess("Producto guardado correctamente");
         this.cargarDatos();
       } else {
         console.error('Error al guardar el producto');
       }
     });
+  }
+
+  private eliminarProducto(id: string): void {
+
+    this.mensaje.showConfirm('¿Está seguro de eliminar el producto?').subscribe( confirm => {
+      if(confirm){
+        this.productoService.deleteById(id).subscribe(response => {
+          if(response){
+            this.mensaje.showSuccess(response);
+            this.cargarDatos();
+          } else {
+            console.error('Error al eliminar el producto');
+          }
+        });
+      }
+    });
+
   }
 
 }

@@ -44,4 +44,19 @@ export class ProductosService {
     );
   }
 
+  deleteById(id: string): Observable<any> {
+    const url = `${this.urlBase}/${id}`;
+    return this._http.delete<any>(url).pipe(
+      map(res => {
+        if(res.ok)
+          return res.message;
+
+        return res;
+      }),
+      catchError(() => {
+        return of(false);
+      })
+    );
+  }
+
 }
