@@ -35,7 +35,7 @@ export class NavigationComponent implements OnInit {
         {
           title: 'Comprar',
           icon: 'shopping_cart',
-          route: '/comprar',
+          route: `/${this.base}/${urlConstRouting.compras.base}`,
           typeAccion: 'link' },
         {
           title: 'Inventario',

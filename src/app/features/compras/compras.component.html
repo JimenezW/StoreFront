@@ -1,8 +1,6 @@
-<h1 class="page-title">Administración productos</h1>
+<h1 class="page-title">Administración compras</h1>
 
 <mat-card class="list-card">
-
-  <!-- ACCIONES -->
   <div class="actions-container">
     <div class="left-actions">
       <mat-slide-toggle [(ngModel)]="estadoGrid" (change)="cargarDatos()">
@@ -23,17 +21,12 @@
     </div>
   </div>
 
-  <mat-card-content>
-
-    <!-- TABLA -->
-    <div class="table-container">
-      <app-tabla-dinamica
-      [gridConfig]="gridProductos"
+  <div class="table-container">
+    <app-tabla-dinamica
+      [gridConfig]="gridCompra"
       (action)="handleActionEvent($event)"
       (pageChange)="handlePageEvent($event)"
       (sortChange)="handleSortEvent($event)"
-      ></app-tabla-dinamica>
-    </div>
-  </mat-card-content>
-
+    ></app-tabla-dinamica>
+  </div>
 </mat-card>

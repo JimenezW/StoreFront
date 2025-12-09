@@ -12,8 +12,8 @@ const urlConstRouting = {
     asig_rol : 'asig-rol',
     lista :''
   },
-  roles : {
-    base:'roles',
+  compras : {
+    base:'compras',
     crear :'crear',
     lista :''
   },
