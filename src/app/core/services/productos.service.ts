@@ -34,7 +34,7 @@ export class ProductosService {
     return this._http.post<any>(this.urlBase, data).pipe(
       map(res => {
         if(res.ok)
-          return res.content;
+          return res.message;
 
         return res;
       }),
@@ -47,6 +47,21 @@ export class ProductosService {
   deleteById(id: string): Observable<any> {
     const url = `${this.urlBase}/${id}`;
     return this._http.delete<any>(url).pipe(
+      map(res => {
+        if(res.ok)
+          return res.message;
+
+        return res;
+      }),
+      catchError(() => {
+        return of(false);
+      })
+    );
+  }
+
+  putSave(id : string, data: any): Observable<any> {
+    const url = `${this.urlBase}/${id}`;
+    return this._http.put<any>(url, data).pipe(
       map(res => {
         if(res.ok)
           return res.message;

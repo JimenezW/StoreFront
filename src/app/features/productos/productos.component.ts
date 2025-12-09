@@ -25,6 +25,7 @@ export class ProductosComponent implements OnInit {
   gridProductos = new ConfigTablaProductos();
   formProductos = new ConfigFormProductos();
   estadoGrid = true;
+  idProductoSeleccionado: string = '';
 
   constructor(
     private readonly productoService: ProductosService,
@@ -39,7 +40,12 @@ export class ProductosComponent implements OnInit {
   onAgregar(){
     this.modalFormService.openFormModal(this.formProductos).subscribe(result => {
       if(result && result.action === TipoAccion.save){
-        this.guardarProducto(result.data);
+        if(this.idProductoSeleccionado){
+          this.actualizarProducto(result.data);
+          this.idProductoSeleccionado = '';
+        } else {
+          this.guardarProducto(result.data);
+        }
       }
     });
   }
@@ -64,8 +70,9 @@ export class ProductosComponent implements OnInit {
       this.eliminarProducto(event.rowData.id);
     }
     if (event.action === AccionFormat.editar) {
-      alert(`Acción: ${event.action}\nFila: ${JSON.stringify(event.rowData)}`);
-
+      this.idProductoSeleccionado = event.rowData.id;
+      this.formProductos.data = event.rowData;
+      this.onAgregar();
     }
 
   }
@@ -107,6 +114,17 @@ export class ProductosComponent implements OnInit {
       }
     });
 
+  }
+
+  private actualizarProducto(data: any): void {
+    this.productoService.putSave(this.idProductoSeleccionado, data).subscribe(response => {
+      if(response){
+        this.mensaje.showSuccess("Producto actualizado correctamente");
+        this.cargarDatos();
+      } else {
+        console.error('Error al guardar el producto');
+      }
+    });
   }
 
 }

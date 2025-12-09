@@ -6,6 +6,7 @@ export class ConfigFormProductos implements ConfigFormModal {
   title = 'Formulario de Productos';
   width = '600px';
   height= '300px';
+  data?: any;
   fields: FormFieldConfig[] =[
     { id: 'nombre',
       label: 'Nombre',
