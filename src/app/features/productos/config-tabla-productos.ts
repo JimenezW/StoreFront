@@ -1,6 +1,7 @@
 
 import { ConfigTabla } from '../../shared/components/tabla-dinamica/config-tabla';
 import {
+  AccionFormat,
   ColumnDefinition,
   GridOptions,
   RowConfiguracion } from '../../shared/components/tabla-dinamica/dynamic-table.models';
@@ -56,7 +57,7 @@ export class ConfigTablaProductos implements ConfigTabla {
       color: 'warn',
       activo: true,
       visible:true,
-      esAccion: 'eliminar'
+      esAccion: AccionFormat.eliminar
     },
     {
       idColumn:'id',
@@ -66,7 +67,7 @@ export class ConfigTablaProductos implements ConfigTabla {
       totooltip:'editar',
       activo: true,
       visible:true,
-      esAccion: 'editar'
+      esAccion: AccionFormat.editar
     }
   ];
   options: GridOptions = {

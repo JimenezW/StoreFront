@@ -4,6 +4,7 @@ import { Component } from '@angular/core';
 import { ProductosComponent } from '../features/productos/productos.component';
 import { HomeComponent } from '../features/Home/Home.component';
 import urlConstRouting from '../shared/constants/url-const.routing';
+import { AccessGuard } from '../core/guards/acces.guards';
 
 const home = urlConstRouting.dashboard.base;
 
@@ -14,7 +15,7 @@ export const LayoutRoutes: Routes = [
     children: [
       { path: '', component: HomeComponent },   // /dashboard
       { path: 'productos', component: ProductosComponent }
-    ]
+    ],canActivate: [AccessGuard]
   },
 ];
 

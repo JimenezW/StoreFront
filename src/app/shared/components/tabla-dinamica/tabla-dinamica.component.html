@@ -14,25 +14,26 @@
 
 
       <td mat-cell *matCellDef="let row">
-        <div *ngIf="col.format != 'accion'" [ngSwitch]="col.format">
-          <span *ngSwitchCase="'date'">{{ row[col.id] | date: 'mediumDate' }}</span>
-          <span *ngSwitchCase="'currency'">{{ row[col.id] | currency: 'USD' }}</span>
-          <span *ngSwitchDefault>{{ row[col.id] }}</span>
-        </div>
-        <div *ngIf="col.format === 'accion'">
-          <ng-container *ngFor="let accion of gridConfig.rowconfig">
-            <button mat-icon-button color="{{accion.color}}" (click)="onActionClick(accion.esAccion, row)" [matTooltip]="accion.totooltip ?? '-'">
-              <mat-icon>{{ accion.icon }}</mat-icon>
-            </button>
-          </ng-container>
-        </div>
-
+        @switch (col.format) {
+          @case ('accion') {
+            <ng-container *ngFor="let accion of gridConfig.rowconfig">
+              <button mat-icon-button color="{{accion.color}}" (click)="onActionClick(accion.esAccion, row)" [matTooltip]="accion.totooltip ?? '-'">
+                <mat-icon>{{ accion.icon }}</mat-icon>
+              </button>
+            </ng-container>
+          }
+          @case ('date') {
+            <span>{{ row[col.id] | date: 'dd-MM-yyyy' }}</span>
+          }
+          @case ('currency') {
+            <span>{{ row[col.id] | currency: 'MXN' }}</span>
+          }
+          @default {
+            <span>{{ row[col.id] }}</span>
+          }
+        }
       </td>
     </ng-container>
-
-    <!-- Columna de Acciones -->
-
-
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>

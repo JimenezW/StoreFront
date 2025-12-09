@@ -4,6 +4,14 @@
 export type ColumnFormat = 'text' | 'date' | 'currency' | 'accion';
 export type AccionFormat = 'editar' | 'eliminar' | 'consulta' | 'descarga' | 'click';
 
+export const AccionFormat = {
+  editar: 'editar',
+  eliminar: 'eliminar',
+  consulta: 'consulta',
+  descarga: 'descarga',
+  click: 'click'
+} as const;
+
 /**
  * Define la estructura de una columna en la tabla dinámica.
  */

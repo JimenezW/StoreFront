@@ -5,3 +5,38 @@ body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
+
+.page-title {
+  margin: 0 0 15px 0;
+  font-size: 1.8rem;
+  font-weight: 600;
+}
+
+.list-card {
+  width: 100%;
+  padding: 16px;
+}
+
+.table-container {
+  overflow: auto;
+  max-height: calc(100vh - 250px);
+}
+
+
+.actions-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 8px 0;
+}
+
+.right-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+
+
+
