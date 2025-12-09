@@ -15,10 +15,18 @@ export interface ModalButtonConfig {
   id: string;
   label: string;
   color?: 'primary' | 'accent' | 'warn';
-  action: 'save' | 'cancel' | 'custom';
+  action: TipoAccion;
 }
 
 export interface ActionModalEvent {
-  action: string;
+  action: TipoAccion;
   data: any;
 }
+
+export type TipoAccion = 'save' | 'cancel' | 'custom';
+
+export const TipoAccion = {
+  save: 'save',
+  cancel: 'cancel',
+  custom: 'custom'
+} as const;

@@ -45,7 +45,7 @@
       *ngFor="let btn of gridConfig.buttons"
       mat-raised-button
       [color]="btn.color"
-      (click)="onActionClick(btn.id)">
+      (click)="onActionClick(btn.action)">
       {{ btn.label }}
     </button>
   </div>

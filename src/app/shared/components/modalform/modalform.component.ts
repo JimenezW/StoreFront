@@ -6,7 +6,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { ConfigFormModal } from './config-form-modal.model';
-import { ActionModalEvent, FormFieldConfig } from './dynamic-modalform';
+import { ActionModalEvent, FormFieldConfig, TipoAccion } from './dynamic-modalform';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { NumberFormatDirective } from '../../directives/number-format.directive';
 import { ContainerDirective } from '../../directives/app-continer.directive';
@@ -71,11 +71,18 @@ export class ModalformComponent implements OnInit {
     });
   }
 
-  onActionClick(action: string): void {
+  onActionClick(action: TipoAccion): void {
+
+    if (action === TipoAccion.save && this.form.invalid) {
+      this.form.markAllAsTouched();
+      return;
+    }
+
     const payload: ActionModalEvent = {
       action,
       data: this.form.value
     };
+
     this.dialogRef.close(payload);
   }
 

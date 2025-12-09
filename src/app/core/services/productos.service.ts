@@ -29,4 +29,19 @@ export class ProductosService {
       })
     );
   }
+
+  postSave(data: any): Observable<any> {
+    return this._http.post<any>(this.urlBase, data).pipe(
+      map(res => {
+        if(res.ok)
+          return res.content;
+
+        return res;
+      }),
+      catchError(() => {
+        return of(false);
+      })
+    );
+  }
+
 }

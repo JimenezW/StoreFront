@@ -70,7 +70,7 @@ export class ConfigTablaProductos implements ConfigTabla {
     }
   ];
   options: GridOptions = {
-      paginationVirtual:true,
+      paginationVirtual:false,
       sorting: true,
       filtering: true,
       pagination: {

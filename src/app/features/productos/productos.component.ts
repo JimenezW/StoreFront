@@ -8,6 +8,7 @@ import { PageEvent } from '@angular/material/paginator';
 import { Sort } from '@angular/material/sort';
 import { ModalFormService } from '../../shared/service/modal-form.service';
 import { ConfigFormProductos } from './config-form-productos';
+import { TipoAccion } from '../../shared/components/modalform/dynamic-modalform';
 
 @Component({
   selector: 'app-productos',
@@ -33,8 +34,9 @@ export class ProductosComponent implements OnInit {
 
   onAgregar(){
     this.modalFormService.openFormModal(this.formProductos).subscribe(result => {
-      console.log('Datos a guardar:', result.data);
-      console.log('Acción realizada:', result.action);
+      if(result && result.action === TipoAccion.save){
+        this.guardarProducto(result.data);
+      }
     });
   }
 
@@ -65,6 +67,16 @@ export class ProductosComponent implements OnInit {
     const size = this.gridProductos.options.pagination.pageSize;
     const page = this.gridProductos.options.pagination.page;
     this.cargarDatos(page, size, sort);
+  }
+
+  private guardarProducto(data: any): void {
+    this.productoService.postSave(data).subscribe(response => {
+      if(response){
+        this.cargarDatos();
+      } else {
+        console.error('Error al guardar el producto');
+      }
+    });
   }
 
 }
