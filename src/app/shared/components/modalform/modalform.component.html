@@ -16,6 +16,10 @@
                   @case ('number') {
                     <input matInput appNumberFormat [formControlName]="field.id">
                   }
+                  @case ('telephone') {
+                    <input matInput appNumberFormat
+                    [formControlName]="field.id">
+                  }
                   @case ('date') {
                     <input matInput [type]="field.type" [formControlName]="field.id">
                   }

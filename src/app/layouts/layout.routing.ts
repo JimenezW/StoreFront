@@ -6,6 +6,7 @@ import { HomeComponent } from '../features/Home/Home.component';
 import urlConstRouting from '../shared/constants/url-const.routing';
 import { AccessGuard } from '../core/guards/acces.guards';
 import { ComprasComponent } from '../features/compras/compras.component';
+import { ProveedoresComponent } from '../features/proveedores/proveedores.component';
 
 const home = urlConstRouting.dashboard.base;
 
@@ -16,7 +17,8 @@ export const LayoutRoutes: Routes = [
     children: [
       { path: '', component: HomeComponent },   // /dashboard
       { path: 'productos', component: ProductosComponent },
-      { path: 'compras', component: ComprasComponent}
+      { path: 'compras', component: ComprasComponent},
+      { path: 'proveedores', component: ProveedoresComponent}
     ],canActivate: [AccessGuard]
   },
 ];

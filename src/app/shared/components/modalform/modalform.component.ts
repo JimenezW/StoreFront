@@ -10,6 +10,7 @@ import { ActionModalEvent, FormFieldConfig, TipoAccion } from './dynamic-modalfo
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { NumberFormatDirective } from '../../directives/number-format.directive';
 import { ContainerDirective } from '../../directives/app-continer.directive';
+import { PhoneMaskDirective } from '../../directives/phone-format.directive';
 
 
 @Component({
@@ -25,7 +26,8 @@ import { ContainerDirective } from '../../directives/app-continer.directive';
     MatInputModule,
     MatButtonModule,
     MatSelectModule,
-    NumberFormatDirective
+    NumberFormatDirective,
+    PhoneMaskDirective
   ]
 })
 export class ModalformComponent implements OnInit {

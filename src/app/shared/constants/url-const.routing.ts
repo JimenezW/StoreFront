@@ -17,6 +17,11 @@ const urlConstRouting = {
     crear :'crear',
     lista :''
   },
+  provedor : {
+    base:'proveedores',
+    crear :'crear',
+    lista :''
+  },
   permisos : {
     base:'permisos',
     crear :'crear',

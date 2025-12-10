@@ -31,17 +31,26 @@ export class NavigationComponent implements OnInit {
           title: 'Productos',
           icon: 'ballot',
           route: `/${this.base}/${urlConstRouting.productos.base}`,
-          typeAccion: 'link' },
+          typeAccion: 'link'
+        },
         {
           title: 'Comprar',
           icon: 'shopping_cart',
           route: `/${this.base}/${urlConstRouting.compras.base}`,
-          typeAccion: 'link' },
+          typeAccion: 'link'
+        },
+        {
+          title: 'Proveedores',
+          icon: 'inventory_2',
+          route: `/${this.base}/${urlConstRouting.provedor.base}`,
+          typeAccion: 'link'
+        },
         {
           title: 'Inventario',
           icon: 'inventory_2',
           route: '/usuarios/asig-permiso',
-          typeAccion: 'link' }
+          typeAccion: 'link'
+        }
       ]
     },
     {

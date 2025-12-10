@@ -1,0 +1,39 @@
+<h1 class="page-title">Administración proveedores</h1>
+
+<mat-card class="list-card">
+
+  <!-- ACCIONES -->
+  <div class="actions-container">
+    <div class="left-actions">
+      <mat-slide-toggle [(ngModel)]="estadoGrid" (change)="cargarDatos()">
+        Mostrar activos
+      </mat-slide-toggle>
+    </div>
+
+    <div class="right-actions">
+      <button mat-flat-button color="primary" (click)="onAgregar()">
+        <mat-icon>add</mat-icon>
+        Agregar
+      </button>
+
+      <button mat-stroked-button color="accent" (click)="onFiltrar()">
+        <mat-icon>filter_list</mat-icon>
+        Filtros
+      </button>
+    </div>
+  </div>
+
+  <mat-card-content>
+
+    <!-- TABLA -->
+    <div class="table-container">
+      <app-tabla-dinamica
+      [gridConfig]="grid"
+      (action)="handleActionEvent($event)"
+      (pageChange)="handlePageEvent($event)"
+      (sortChange)="handleSortEvent($event)"
+      ></app-tabla-dinamica>
+    </div>
+  </mat-card-content>
+
+</mat-card>
