@@ -8,6 +8,11 @@ import { Sort } from '@angular/material/sort';
 import { CompraService } from '../../core/services/compra.service';
 import { ModalFormService } from '../../shared/service/modal-form.service';
 import { MensajeAlertService } from '../../shared/service/alert.service';
+import { ConfigFormCompra } from './config-form-compra';
+import { TipoAccion } from '../../shared/components/modalform/dynamic-modalform';
+import { ProveedoreService } from '../../core/services/proveedores.service';
+import { ProductosService } from '../../core/services/productos.service';
+import { forkJoin } from 'rxjs';
 
 @Component({
   selector: 'app-compras',
@@ -22,12 +27,15 @@ export class ComprasComponent implements OnInit {
 
   estadoGrid = true;
   gridCompra = new ConfigTablaCompra();
+  configForm = new ConfigFormCompra();
   idSeleccionado: string = '';
 
   constructor(
     private readonly compraService :  CompraService,
     private readonly modalFormService: ModalFormService,
-    private readonly mensaje: MensajeAlertService
+    private readonly mensaje: MensajeAlertService,
+    private readonly proveedorService: ProveedoreService,
+    private readonly productoService : ProductosService
   ){ }
 
   ngOnInit() {
@@ -46,7 +54,42 @@ export class ComprasComponent implements OnInit {
     });
   }
 
-  onAgregar(){}
+  onAgregar(){
+
+    forkJoin({
+      productos: this.productoService.getSelect(),
+      proveedores: this.proveedorService.getSelect()
+    }).subscribe({
+      next: ({ productos, proveedores }) => {
+        console.log(productos);
+        console.log(proveedores);
+
+        this.configForm.setProveedores(
+          proveedores.map((p:any) => ({ value: p.id, label: p.nombre }))
+        );
+
+        this.configForm.setProductos(
+          productos.map((p:any) => ({ value: p.id, label: p.nombre }))
+        );
+
+
+        this.initForm();
+      },
+      error: err => {
+        console.error(err);
+      }
+    });
+
+  }
+
+  private mapSelectOption(data : any[]){
+    const options = data.map(item => ({
+      value: item.id,
+      label: item.nombre
+    }));
+
+    return options;
+  }
 
   onFiltrar(){}
 
@@ -72,5 +115,18 @@ export class ComprasComponent implements OnInit {
     const size = this.gridCompra.options.pagination.pageSize;
     const page = this.gridCompra.options.pagination.page;
     //this.cargarDatos(page, size, sort);
+  }
+
+  private initForm(){
+    this.modalFormService.openFormModal(this.configForm).subscribe(result => {
+      if(result && result.action === TipoAccion.save){
+        if(this.idSeleccionado){
+          //this.actualizarProducto(result.data);
+          this.idSeleccionado = '';
+        } else {
+          //this.guardarProducto(result.data);
+        }
+      }
+    });
   }
 }

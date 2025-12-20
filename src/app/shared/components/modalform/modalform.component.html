@@ -16,6 +16,15 @@
                   @case ('number') {
                     <input matInput appNumberFormat [formControlName]="field.id">
                   }
+                  @case ('currency') {
+                    <input matInput appNumberFormat
+                    [allowDecimal]="true"
+                    [decimalPlaces]="2"
+                    [thousandSeparator]="','"
+                    [decimalSeparator]="'.'"
+                    [currencySymbol]="'$'"
+                    [formControlName]="field.id">
+                  }
                   @case ('telephone') {
                     <input matInput appNumberFormat
                     [formControlName]="field.id">

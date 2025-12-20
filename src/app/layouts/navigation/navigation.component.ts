@@ -23,8 +23,8 @@ export class NavigationComponent implements OnInit {
       typeAccion : 'link'
     },
     {
-      title: 'Productos',
-      icon: 'local_mall',
+      title: 'Administración',
+      icon: 'settings',
       typeAccion: 'NA',
       children: [
         {

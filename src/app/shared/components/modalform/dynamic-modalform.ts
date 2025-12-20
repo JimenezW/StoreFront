@@ -3,7 +3,7 @@ import { ValidatorFn } from '@angular/forms';
 export interface FormFieldConfig {
   id: string;
   label: string;
-  type: 'text' | 'number' | 'textarea' | 'select' | 'date' | 'telephone' | 'email';
+  type: 'text' | 'number' | 'textarea' | 'select' | 'date' | 'telephone' | 'email' | 'currency';
   value?: any;
   row?: number;
   order?: number;

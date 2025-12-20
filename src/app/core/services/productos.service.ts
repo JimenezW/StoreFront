@@ -74,4 +74,18 @@ export class ProductosService {
     );
   }
 
+  getSelect() : Observable<any>{
+    return this._http.get<any>(this.urlBase + '/listar', {}).pipe(
+      map(res => {
+
+        if(res.ok)
+          return res.content;
+
+        return res;
+      }),
+      catchError(() => {
+        return of(false);
+      })
+    );
+  }
 }
