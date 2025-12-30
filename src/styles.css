@@ -1,8 +1,6 @@
 @import '@angular/material/prebuilt-themes/indigo-pink.css';
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+
 
 /* You can add global styles to this file, and also import other style files */
 
@@ -40,4 +38,26 @@ body {
   display: flex;
   align-items: center;
   gap: 0.5rem;
+}
+
+:root {
+  --primary: #5db69d;
+  --accent: #4aa58d;
+
+  --toolbar-bg: #5db69d;
+  --toolbar-text: #ffffff;
+  --toolbar-height: 64px;
+}
+
+.mat-mdc-raised-button {
+  background-color: var(--primary) !important;
+}
+
+.mat-toolbar {
+  background-color: var(--toolbar-bg) !important;
+  color: var(--toolbar-text) !important;
+  height: var(--toolbar-height);
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
 }

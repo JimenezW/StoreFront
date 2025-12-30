@@ -1,1 +1,122 @@
-/* El CSS personalizado ha sido eliminado y reemplazado por clases de utilidad de Tailwind CSS en el archivo HTML. */
+.container-login {
+  width: 70%;
+  background: #fff;
+  border-radius: 20px;
+  display: flex;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.container-login .left-panel {
+  width: 50%;
+  padding: 60px 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.container-login .left-panel h2 {
+  margin-bottom: 15px;
+}
+
+.container-login .social-icons {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 15px;
+}
+
+.container-login .social-icons img {
+  width: 36px;
+  height: 36px;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 50%;
+  cursor: pointer;
+  object-fit: contain;
+  transition: all 0.3s ease;
+}
+
+.container-login .social-icons img:hover {
+  background: #5db69d;
+  border-color: #5db69d;
+}
+
+.container-login .subtitle {
+  font-size: 14px;
+  color: #777;
+  margin-bottom: 20px;
+}
+
+.container-login .login-form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.container-login .login-form input {
+  padding: 12px;
+  margin-bottom: 10px;
+  border: none;
+  background: #f2f2f2;
+  border-radius: 5px;
+}
+
+.container-login .forgot {
+  font-size: 12px;
+  color: #555;
+  text-align: center;
+  margin: 10px 0 20px;
+  text-decoration: none;
+}
+
+.container-login .login-form button {
+  background: #5db69d;
+  color: #fff;
+  border: none;
+  padding: 12px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.container-login .login-form button:hover {
+  background: #4aa58d;
+}
+
+/* Panel derecho */
+.container-login .right-panel {
+  width: 50%;
+  background: #5db69d;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-top-left-radius: 50%;
+  border-bottom-left-radius: 50%;
+}
+
+.container-login .right-panel h2 {
+  font-size: 28px;
+  margin-bottom: 15px;
+}
+
+.container-login .right-panel p {
+  text-align: center;
+  font-size: 14px;
+  margin-bottom: 25px;
+}
+
+.container-login .register-btn {
+  background: transparent;
+  border: 2px solid #fff;
+  color: #fff;
+  padding: 10px 30px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.container-login .register-btn:hover {
+  background: #ffffff33;
+}
